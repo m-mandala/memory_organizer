@@ -8,7 +8,7 @@ actor DuplicateDetector {
 
     // Returns groups of near-duplicate PhotoAssets (each group has 2+ photos)
     func detect(assets: [PhotoAsset], progress: @Sendable (Double) -> Void) async -> [DuplicateGroup] {
-        var prints: [(PhotoAsset, VNFeaturePrint)] = []
+        var prints: [(PhotoAsset, VNFeaturePrintObservation)] = []
 
         // Process in batches
         let batches = stride(from: 0, to: assets.count, by: batchSize).map {
@@ -28,8 +28,8 @@ actor DuplicateDetector {
 
     // MARK: - Feature print computation
 
-    private func computeFeaturePrints(for assets: [PhotoAsset]) async -> [(PhotoAsset, VNFeaturePrint)] {
-        var results: [(PhotoAsset, VNFeaturePrint)] = []
+    private func computeFeaturePrints(for assets: [PhotoAsset]) async -> [(PhotoAsset, VNFeaturePrintObservation)] {
+        var results: [(PhotoAsset, VNFeaturePrintObservation)] = []
 
         for asset in assets {
             guard let image = await loadImage(asset: asset) else { continue }
@@ -40,7 +40,7 @@ actor DuplicateDetector {
 
             do {
                 try handler.perform([request])
-                if let observation = request.results?.first as? VNFeaturePrint {
+                if let observation = request.results?.first as? VNFeaturePrintObservation {
                     results.append((asset, observation))
                 }
             } catch {
@@ -53,7 +53,7 @@ actor DuplicateDetector {
 
     // MARK: - Grouping
 
-    private func buildGroups(from prints: [(PhotoAsset, VNFeaturePrint)]) -> [DuplicateGroup] {
+    private func buildGroups(from prints: [(PhotoAsset, VNFeaturePrintObservation)]) -> [DuplicateGroup] {
         var visited = Set<Int>()
         var groups: [DuplicateGroup] = []
 
