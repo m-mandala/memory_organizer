@@ -47,7 +47,7 @@ final class LibraryViewModel {
     // MARK: - Scanning
 
     func scanLibrary() async {
-        guard case .idle = scanState else { return }
+        guard scanState == .idle || scanState == .done else { return }
 
         duplicateGroups = []
         burstGroups = []

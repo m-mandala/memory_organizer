@@ -81,7 +81,7 @@ actor ImageQualityAnalyzer {
         histFilter.scale = 1.0
         histFilter.count = 256
 
-        guard let histOutput = histFilter.outputImage else { return 0.5 }
+        guard histFilter.outputImage != nil else { return 0.5 }
 
         // Sample mean luminance using areaAverage on original
         let avgFilter = CIFilter.areaAverage()
@@ -136,27 +136,24 @@ actor ImageQualityAnalyzer {
 
     private func computeMotionStability(ciImage: CIImage) -> Double {
         // Use VNDetectHorizonRequest as a stability proxy — a detectable horizon
-        // implies a steady, level shot.
+        // implies a steady, level shot. VNImageRequestHandler.perform is synchronous
+        // so the completion fires before perform returns; no semaphore needed.
         guard let cgImage = ciContext.createCGImage(
             ciImage,
             from: CGRect(x: 0, y: 0, width: min(ciImage.extent.width, 256), height: min(ciImage.extent.height, 256))
         ) else { return 0.5 }
 
         var score = 0.5
-        let semaphore = DispatchSemaphore(value: 0)
 
         let request = VNDetectHorizonRequest { request, _ in
             if let obs = request.results?.first as? VNHorizonObservation {
-                // Smaller angle deviation → more stable
                 let deviation = abs(obs.angle)
                 score = max(0, 1.0 - Double(deviation) / (.pi / 4))
             }
-            semaphore.signal()
         }
 
         let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
         try? handler.perform([request])
-        semaphore.wait()
 
         return score
     }

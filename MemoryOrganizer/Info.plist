@@ -2,9 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-    <key>NSPhotoLibraryUsageDescription</key>
-    <string>Memory Organizer needs access to your photos to detect duplicates, analyze burst sequences, and cluster your memories.</string>
-    <key>NSPhotoLibraryAddUsageDescription</key>
-    <string>Memory Organizer may save generated memory images to your photo library.</string>
+	<key>NSPhotoLibraryAddUsageDescription</key>
+	<string>Memory Organizer may save generated memory images to your photo library.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Memory Organizer needs access to your photos to detect duplicates, analyze burst sequences, and cluster your memories.</string>
+	<key>UISupportedInterfaceOrientations</key>
+	<array>
+		<string>UIInterfaceOrientationPortrait</string>
+	</array>
 </dict>
 </plist>
