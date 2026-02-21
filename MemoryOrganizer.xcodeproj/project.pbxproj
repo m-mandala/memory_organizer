@@ -1,0 +1,366 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		000000000000000000000014 /* MemoryOrganizerApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000013 /* MemoryOrganizerApp.swift */; };
+		000000000000000000000016 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000015 /* ContentView.swift */; };
+		000000000000000000000018 /* PhotoAsset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000017 /* PhotoAsset.swift */; };
+		00000000000000000000001A /* DuplicateGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000019 /* DuplicateGroup.swift */; };
+		00000000000000000000001C /* BurstGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001B /* BurstGroup.swift */; };
+		00000000000000000000001E /* MemoryCluster.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001D /* MemoryCluster.swift */; };
+		000000000000000000000020 /* PhotoLibraryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000001F /* PhotoLibraryService.swift */; };
+		000000000000000000000022 /* DuplicateDetector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000021 /* DuplicateDetector.swift */; };
+		000000000000000000000024 /* BurstAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000023 /* BurstAnalyzer.swift */; };
+		000000000000000000000026 /* ImageQualityAnalyzer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000025 /* ImageQualityAnalyzer.swift */; };
+		000000000000000000000028 /* ImageGenerationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000027 /* ImageGenerationService.swift */; };
+		00000000000000000000002A /* LibraryViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000029 /* LibraryViewModel.swift */; };
+		00000000000000000000002C /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002B /* HomeView.swift */; };
+		00000000000000000000002E /* DuplicatesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002D /* DuplicatesView.swift */; };
+		000000000000000000000030 /* BurstsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00000000000000000000002F /* BurstsView.swift */; };
+		000000000000000000000032 /* AIClusterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000031 /* AIClusterView.swift */; };
+		000000000000000000000034 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 000000000000000000000033 /* Info.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		000000000000000000000013 /* MemoryOrganizerApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoryOrganizerApp.swift; path = MemoryOrganizerApp.swift; sourceTree = "<group>"; };
+		000000000000000000000015 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ContentView.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		000000000000000000000017 /* PhotoAsset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoAsset.swift; path = PhotoAsset.swift; sourceTree = "<group>"; };
+		000000000000000000000019 /* DuplicateGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuplicateGroup.swift; path = DuplicateGroup.swift; sourceTree = "<group>"; };
+		00000000000000000000001B /* BurstGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BurstGroup.swift; path = BurstGroup.swift; sourceTree = "<group>"; };
+		00000000000000000000001D /* MemoryCluster.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MemoryCluster.swift; path = MemoryCluster.swift; sourceTree = "<group>"; };
+		00000000000000000000001F /* PhotoLibraryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = PhotoLibraryService.swift; path = PhotoLibraryService.swift; sourceTree = "<group>"; };
+		000000000000000000000021 /* DuplicateDetector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuplicateDetector.swift; path = DuplicateDetector.swift; sourceTree = "<group>"; };
+		000000000000000000000023 /* BurstAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BurstAnalyzer.swift; path = BurstAnalyzer.swift; sourceTree = "<group>"; };
+		000000000000000000000025 /* ImageQualityAnalyzer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageQualityAnalyzer.swift; path = ImageQualityAnalyzer.swift; sourceTree = "<group>"; };
+		000000000000000000000027 /* ImageGenerationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = ImageGenerationService.swift; path = ImageGenerationService.swift; sourceTree = "<group>"; };
+		000000000000000000000029 /* LibraryViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = LibraryViewModel.swift; path = LibraryViewModel.swift; sourceTree = "<group>"; };
+		00000000000000000000002B /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeView.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		00000000000000000000002D /* DuplicatesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DuplicatesView.swift; path = DuplicatesView.swift; sourceTree = "<group>"; };
+		00000000000000000000002F /* BurstsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = BurstsView.swift; path = BurstsView.swift; sourceTree = "<group>"; };
+		000000000000000000000031 /* AIClusterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AIClusterView.swift; path = AIClusterView.swift; sourceTree = "<group>"; };
+		000000000000000000000033 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Info.plist; sourceTree = "<group>"; };
+		00000000000000000000000B /* MemoryOrganizer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MemoryOrganizer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+
+		00000000000000000000000E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+
+		000000000000000000000009 /* MemoryOrganizer */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000F /* Models */,
+				000000000000000000000010 /* Services */,
+				000000000000000000000011 /* ViewModels */,
+				000000000000000000000012 /* Views */,
+				000000000000000000000013 /* MemoryOrganizerApp.swift */,
+				000000000000000000000015 /* ContentView.swift */,
+				000000000000000000000033 /* Info.plist */,
+				00000000000000000000000A /* Products */,
+			);
+			name = MemoryOrganizer;
+			path = MemoryOrganizer;
+			sourceTree = "<group>";
+		};
+
+		00000000000000000000000F /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000017 /* PhotoAsset.swift */,
+				000000000000000000000019 /* DuplicateGroup.swift */,
+				00000000000000000000001B /* BurstGroup.swift */,
+				00000000000000000000001D /* MemoryCluster.swift */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+
+		000000000000000000000010 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000001F /* PhotoLibraryService.swift */,
+				000000000000000000000021 /* DuplicateDetector.swift */,
+				000000000000000000000023 /* BurstAnalyzer.swift */,
+				000000000000000000000025 /* ImageQualityAnalyzer.swift */,
+				000000000000000000000027 /* ImageGenerationService.swift */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
+
+		000000000000000000000011 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+				000000000000000000000029 /* LibraryViewModel.swift */,
+			);
+			name = ViewModels;
+			sourceTree = "<group>";
+		};
+
+		000000000000000000000012 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000002B /* HomeView.swift */,
+				00000000000000000000002D /* DuplicatesView.swift */,
+				00000000000000000000002F /* BurstsView.swift */,
+				000000000000000000000031 /* AIClusterView.swift */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+
+		00000000000000000000000A /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				00000000000000000000000B /* MemoryOrganizer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+
+		000000000000000000000002 /* MemoryOrganizer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 000000000000000000000004 /* Build configuration list for PBXNativeTarget "MemoryOrganizer" */;
+			buildPhases = (
+				00000000000000000000000C /* Sources */,
+				00000000000000000000000D /* Resources */,
+				00000000000000000000000E /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MemoryOrganizer;
+			productName = MemoryOrganizer;
+			productReference = 00000000000000000000000B /* MemoryOrganizer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+
+		000000000000000000000001 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1600;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					000000000000000000000002 = {
+						CreatedOnToolsVersion = 16.0;
+					};
+				};
+			};
+			buildConfigurationList = 000000000000000000000003 /* Build configuration list for PBXProject "MemoryOrganizer" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 000000000000000000000009;
+			productRefGroup = 00000000000000000000000A /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				000000000000000000000002 /* MemoryOrganizer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+
+		00000000000000000000000D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000034 /* Info.plist in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+
+		00000000000000000000000C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				000000000000000000000014 /* MemoryOrganizerApp.swift in Sources */,
+				000000000000000000000016 /* ContentView.swift in Sources */,
+				000000000000000000000018 /* PhotoAsset.swift in Sources */,
+				00000000000000000000001A /* DuplicateGroup.swift in Sources */,
+				00000000000000000000001C /* BurstGroup.swift in Sources */,
+				00000000000000000000001E /* MemoryCluster.swift in Sources */,
+				000000000000000000000020 /* PhotoLibraryService.swift in Sources */,
+				000000000000000000000022 /* DuplicateDetector.swift in Sources */,
+				000000000000000000000024 /* BurstAnalyzer.swift in Sources */,
+				000000000000000000000026 /* ImageQualityAnalyzer.swift in Sources */,
+				000000000000000000000028 /* ImageGenerationService.swift in Sources */,
+				00000000000000000000002A /* LibraryViewModel.swift in Sources */,
+				00000000000000000000002C /* HomeView.swift in Sources */,
+				00000000000000000000002E /* DuplicatesView.swift in Sources */,
+				000000000000000000000030 /* BurstsView.swift in Sources */,
+				000000000000000000000032 /* AIClusterView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+
+		000000000000000000000005 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		000000000000000000000006 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		000000000000000000000007 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				INFOPLIST_FILE = MemoryOrganizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m-mandala.MemoryOrganizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		000000000000000000000008 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSET_CATALOG_COMPILER_GENERATE_ASSET_SYMBOLS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEAD_CODE_STRIPPING = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				INFOPLIST_FILE = MemoryOrganizer/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.m-mandala.MemoryOrganizer";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SUPPORTED_PLATFORMS = iphoneos;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+
+		000000000000000000000003 /* Build configuration list for PBXProject "MemoryOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000005 /* Debug */,
+				000000000000000000000006 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		000000000000000000000004 /* Build configuration list for PBXNativeTarget "MemoryOrganizer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				000000000000000000000007 /* Debug */,
+				000000000000000000000008 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+	};
+	rootObject = 000000000000000000000001 /* Project object */;
+}
