@@ -4,84 +4,82 @@ import UIKit
 
 actor DuplicateDetector {
     private let threshold: Float = 0.3
-    private let batchSize = 50
+    // Compare each photo only against its 150 nearest temporal neighbours.
+    // Real duplicates (screenshots saved twice, burst extras, edits) are taken
+    // within seconds of each other, so this catches virtually all of them while
+    // keeping complexity at O(n × windowSize) instead of O(n²).
+    private let windowSize = 150
 
-    // Returns groups of near-duplicate PhotoAssets (each group has 2+ photos)
-    func detect(assets: [PhotoAsset], progress: @Sendable (Double) -> Void) async -> [DuplicateGroup] {
-        var prints: [(PhotoAsset, VNFeaturePrintObservation)] = []
-
-        // Process in batches
-        let batches = stride(from: 0, to: assets.count, by: batchSize).map {
-            Array(assets[$0..<min($0 + batchSize, assets.count)])
+    func detect(
+        assets: [PhotoAsset],
+        progress: @Sendable (Double) -> Void
+    ) async -> [DuplicateGroup] {
+        // Sort ascending by creation date so temporal neighbours are adjacent.
+        let sorted = assets.sorted {
+            ($0.phAsset.creationDate ?? .distantPast) < ($1.phAsset.creationDate ?? .distantPast)
         }
+        let count = sorted.count
+        guard count > 0 else { return [] }
 
-        var processed = 0
-        for batch in batches {
-            let batchPrints = await computeFeaturePrints(for: batch)
-            prints.append(contentsOf: batchPrints)
-            processed += batch.count
-            await MainActor.run { progress(Double(processed) / Double(assets.count)) }
-        }
+        // Sliding window of recent (index, asset, featurePrint) tuples.
+        // Oldest entry is evicted once capacity exceeds windowSize, keeping
+        // peak memory proportional to windowSize, not the full library size.
+        var window: [(idx: Int, asset: PhotoAsset, fp: VNFeaturePrintObservation)] = []
+        window.reserveCapacity(windowSize + 1)
 
-        return buildGroups(from: prints)
-    }
-
-    // MARK: - Feature print computation
-
-    private func computeFeaturePrints(for assets: [PhotoAsset]) async -> [(PhotoAsset, VNFeaturePrintObservation)] {
-        var results: [(PhotoAsset, VNFeaturePrintObservation)] = []
-
-        for asset in assets {
-            guard let image = await loadImage(asset: asset) else { continue }
-            guard let cgImage = image.cgImage else { continue }
-
-            let request = VNGenerateImageFeaturePrintRequest()
-            let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
-
-            do {
-                try handler.perform([request])
-                if let observation = request.results?.first as? VNFeaturePrintObservation {
-                    results.append((asset, observation))
-                }
-            } catch {
-                // Skip assets that fail
-            }
-        }
-
-        return results
-    }
-
-    // MARK: - Grouping
-
-    private func buildGroups(from prints: [(PhotoAsset, VNFeaturePrintObservation)]) -> [DuplicateGroup] {
         var visited = Set<Int>()
         var groups: [DuplicateGroup] = []
 
-        for i in 0..<prints.count {
-            guard !visited.contains(i) else { continue }
+        for i in 0..<count {
+            let asset = sorted[i]
 
-            var group = [prints[i].0]
-            visited.insert(i)
+            guard
+                let image   = await loadImage(asset: asset),
+                let cgImage = image.cgImage
+            else {
+                if i % 100 == 0 {
+                    let p = Double(i + 1) / Double(count)
+                    await MainActor.run { progress(p) }
+                }
+                continue
+            }
 
-            for j in (i + 1)..<prints.count {
-                guard !visited.contains(j) else { continue }
+            let request = VNGenerateImageFeaturePrintRequest()
+            let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+            try? handler.perform([request])
 
-                var distance: Float = 0
-                do {
-                    try prints[i].1.computeDistance(&distance, to: prints[j].1)
-                } catch {
-                    continue
+            guard let fp = request.results?.first as? VNFeaturePrintObservation else {
+                continue
+            }
+
+            // Compare against everything currently in the window.
+            if !visited.contains(i) {
+                var group = [asset]
+                visited.insert(i)
+
+                for entry in window where !visited.contains(entry.idx) {
+                    var distance: Float = 0
+                    try? fp.computeDistance(&distance, to: entry.fp)
+                    if distance < threshold {
+                        group.append(entry.asset)
+                        visited.insert(entry.idx)
+                    }
                 }
 
-                if distance < threshold {
-                    group.append(prints[j].0)
-                    visited.insert(j)
+                if group.count > 1 {
+                    groups.append(DuplicateGroup(assets: group, keepIndex: 0))
                 }
             }
 
-            if group.count > 1 {
-                // Keep the most recently taken photo by default
-                groups.append(DuplicateGroup(assets: group, keepIndex: 0))
+            // Slide the window forward, evicting the oldest entry.
+            window.append((idx: i, asset: asset, fp: fp))
+            if window.count > windowSize {
+                window.removeFirst()
+            }
+
+            if i % 100 == 0 {
+                let p = Double(i + 1) / Double(count)
+                await MainActor.run { progress(p) }
             }
         }
 
@@ -97,12 +95,16 @@ actor DuplicateDetector {
         options.isNetworkAccessAllowed = false
 
         return await withCheckedContinuation { continuation in
+            final class Once { var done = false }
+            let once = Once()
             PHImageManager.default().requestImage(
                 for: asset.phAsset,
                 targetSize: CGSize(width: 512, height: 512),
                 contentMode: .aspectFit,
                 options: options
             ) { image, _ in
+                guard !once.done else { return }
+                once.done = true
                 continuation.resume(returning: image)
             }
         }
